@@ -1,17 +1,20 @@
 package people;
 
-import behaviours.ITransact;
+import behaviours.IBuy;
 import shop.Product;
 
 import java.util.ArrayList;
 
-public class Customer extends Person implements ITransact {
-    private int wallet;
+public class Customer extends Person implements IBuy {
+    public int wallet;
     private ArrayList<Product> basket;
+    private ArrayList<Product> collection;
     public Customer(String name, int wallet) {
         super(name);
         this.wallet = wallet;
         this.basket = new ArrayList<Product>();
+        this.collection = new ArrayList<Product>();
+
     }
 
     public int getWallet() {
@@ -36,17 +39,23 @@ public class Customer extends Person implements ITransact {
         basket.add(product);
     }
 
+    public ArrayList<Product> getCollection() {
+        return collection;
+    }
+
+    public int collectionCount(){
+        return collection.size();
+    }
+
     @Override
-    public void buy() {
+    public void buy(Product product) {
+        collection.add(product);
         int total = 0;
-        for(Product product : basket){
-            total += product.getPrice();
+        for(Product productInBasket : basket){
+            total += productInBasket.getPrice();
         }
         wallet -= total;
     }
 
-    @Override
-    public void sell() {
 
-    }
 }

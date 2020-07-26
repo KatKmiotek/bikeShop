@@ -19,7 +19,7 @@ public class RoadBikeTest {
     public void before(){
         frame = new Frame("Cinelli", 52, "carbon", "road", "red", 300);
         crankset = new Crankset("Shimano", 46, 30);
-        roadBike = new RoadBike(frame, crankset, 0);
+        roadBike = new RoadBike(frame, crankset, 0, "road");
         tyre = new Tyre("Michellin", 700, 23, 15);
         wheel = new Wheel("Mavic", 23, 100);
     }
@@ -47,7 +47,6 @@ public class RoadBikeTest {
         roadBike.addWheel(wheel);
         roadBike.addWheel(wheel);
         roadBike.addWheel(wheel);
-        roadBike.calculatePrice();
         assertEquals(790, roadBike.getPrice());
     }
 }
